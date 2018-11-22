@@ -23,7 +23,7 @@ public class AppManager {
     private static ThreadLocal<AppManager> app = new ThreadLocal<AppManager>();
 
     public AppManager() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/Asus/IdeaProjects/TestItis2018/chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:/Users/Asus/IdeaProjects/ItisTest2018HW3/chromedriver.exe");
         driver = new ChromeDriver();
         baseUrl = "https://www.katalon.com/";
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);

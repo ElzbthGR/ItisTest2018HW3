@@ -4,7 +4,10 @@ import org.openqa.selenium.By;
 import ru.kpfu.testing.AppManager;
 import ru.kpfu.testing.bases.HelperBase;
 
+
 public class BoardHelper extends HelperBase {
+
+    public static Boolean isAdded;
 
     public BoardHelper(AppManager appManager) {
         super(appManager);
@@ -16,5 +19,6 @@ public class BoardHelper extends HelperBase {
         getAppManager().getDriver().findElement(By.xpath("//*[@id=\"classic\"]/div[4]/div/div/div/form/div/div/div[1]/input")).clear();
         getAppManager().getDriver().findElement(By.xpath("//*[@id=\"classic\"]/div[4]/div/div/div/form/div/div/div[1]/input")).sendKeys("test");
         getAppManager().getDriver().findElement(By.xpath("//*[@id=\"classic\"]/div[4]/div/div/div/form/button")).click();
+        isAdded = true;
     }
 }
