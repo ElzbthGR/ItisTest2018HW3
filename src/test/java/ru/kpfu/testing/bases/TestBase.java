@@ -1,29 +1,25 @@
 package ru.kpfu.testing.bases;
 
-import org.junit.After;
-import org.junit.Before;
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import ru.kpfu.testing.AppManager;
 
 
 public class TestBase {
 
-    private AppManager appManager;
+    private static AppManager appManager = new AppManager();
 
-    @Before
-    public void setUp() throws Exception {
-        setApp(new AppManager());
+    @BeforeClass
+    public static void setUp() throws Exception {
+        getAppManager();
     }
 
-    @After
-    public void tearDown() throws Exception {
+    @AfterClass
+    public static void tearDown() throws Exception {
         appManager.stop();
     }
 
-    protected void setApp(AppManager appManager) {
-        this.appManager = appManager;
-    }
-
-    protected AppManager getAppManager() {
+    protected static AppManager getAppManager() {
         return appManager;
     }
 }
