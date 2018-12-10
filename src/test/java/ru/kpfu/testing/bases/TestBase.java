@@ -14,11 +14,6 @@ public class TestBase {
         getAppManager();
     }
 
-    @AfterClass
-    public static void tearDown() throws Exception {
-        appManager.stop();
-    }
-
     protected static AppManager getAppManager() {
         return appManager;
     }

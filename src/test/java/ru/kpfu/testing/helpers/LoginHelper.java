@@ -4,12 +4,18 @@ import org.openqa.selenium.By;
 import ru.kpfu.testing.AppManager;
 import ru.kpfu.testing.bases.HelperBase;
 import ru.kpfu.testing.entities.AccountData;
+import ru.kpfu.testing.util.Settings;
 
 public class LoginHelper extends HelperBase {
 
-    public static AccountData VALID_USER = new AccountData("login", "password");
-    public static AccountData INVALID_USER = new AccountData("login", "password1");
-    public static String USERNAME;
+    private String boardUrl = Settings.getBoardUrl();
+    private String baseUrl = Settings.getBaseUrl();
+    private String accountUrl = Settings.getAccountUrl();
+    private static String login = Settings.getlogin();
+    private static String password = Settings.getPassword();
+
+    public static AccountData VALID_USER = new AccountData(login, password);
+    public static AccountData INVALID_USER = new AccountData(login, "mors1k14");
 
     public LoginHelper(AppManager appManager) {
         super(appManager);
@@ -29,8 +35,8 @@ public class LoginHelper extends HelperBase {
         getAppManager().getDriver().findElement(By.id("password")).clear();
         getAppManager().getDriver().findElement(By.id("password")).sendKeys(data.getPassword());
         getAppManager().getDriver().findElement(By.id("login")).click();
-        if (!isElementPresent(By.id("errors"))) {
-            getAppManager().getDriver().findElement(By.linkText("Перейти к вашим доскам.")).click();
+        if (!isElementPresent(By.id("error"))) {
+            getAppManager().getDriver().findElement(By.linkText("Перейти к вашим доскам")).click();
         }
     }
 
@@ -54,7 +60,7 @@ public class LoginHelper extends HelperBase {
     }
 
     public String getLoggedUserName() {
-        getAppManager().getDriver().get("https://trello.com/lix373/account");
+        getAppManager().getDriver().get(accountUrl);
         String email;
         if (isElementPresent(By.xpath("//*[@id=\"content\"]/div/div[3]/div[2]/div[2]/div[2]/div/div/p[1]"))) {
             email = getAppManager().getDriver().findElement(By.xpath("//*[@id=\"content\"]/div/div[3]/div[2]/div[2]/div[2]/div/div/p[1]")).getText();

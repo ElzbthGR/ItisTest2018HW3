@@ -20,7 +20,7 @@ public class AppManager {
     private LoginHelper loginHelper;
     private NavigateHelper navigateHelper;
 
-    private static ThreadLocal<AppManager> app = new ThreadLocal<AppManager>();
+//    private static ThreadLocal<AppManager> app = new ThreadLocal<AppManager>();
 
     public AppManager() {
         System.setProperty("webdriver.chrome.driver", "C:/Users/Asus/IdeaProjects/ItisTest2018HW3/chromedriver.exe");
