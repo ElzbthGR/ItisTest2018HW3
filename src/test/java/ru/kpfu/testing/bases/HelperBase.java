@@ -1,6 +1,9 @@
 package ru.kpfu.testing.bases;
 
-import org.openqa.selenium.*;
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import ru.kpfu.testing.AppManager;
 
 public class HelperBase {
@@ -17,11 +20,11 @@ public class HelperBase {
         return appManager.getBaseUrl();
     }
 
-    public AppManager getAppManager() {
+    protected AppManager getAppManager() {
         return appManager;
     }
 
-    public boolean isElementPresent(By by) {
+    protected boolean isElementPresent(By by) {
         try {
             appManager.getDriver().findElement(by);
             return true;

@@ -8,6 +8,9 @@ import ru.kpfu.testing.util.Settings;
 
 public class LoginHelper extends HelperBase {
 
+    //TODO: DELETE PASSWORD FROM CODE
+    private static final String PASSWORD = "mors1k14";
+
     private String boardUrl = Settings.getBoardUrl();
     private String baseUrl = Settings.getBaseUrl();
     private String accountUrl = Settings.getAccountUrl();
@@ -15,13 +18,13 @@ public class LoginHelper extends HelperBase {
     private static String password = Settings.getPassword();
 
     public static AccountData VALID_USER = new AccountData(login, password);
-    public static AccountData INVALID_USER = new AccountData(login, "mors1k14");
+    public static AccountData INVALID_USER = new AccountData(login, PASSWORD);
 
     public LoginHelper(AppManager appManager) {
         super(appManager);
     }
 
-    public void doLogin(AccountData data) throws InterruptedException {
+    public void doLogin(AccountData data) {
         if (isLoggedIn()) {
             if (isLoggedIn(data)) {
                 return;
@@ -40,17 +43,13 @@ public class LoginHelper extends HelperBase {
         }
     }
 
-    public void doLogout() {
+    private void doLogout() {
         getAppManager().getDriver().findElement(By.xpath("//*[@id=\"header\"]/div[5]/a[4]/span/span[1]")).click();
         getAppManager().getDriver().findElement(By.linkText("Выйти")).click();
     }
 
-//    public void checkUsername() {
-//        getAppManager().getDriver().findElement(By.xpath("//*[@id=\"header\"]/div[5]/a[4]/span/span[1]")).click();
-//        USERNAME = getAppManager().getDriver().findElement(By.xpath("//*[@id=\"classic\"]/div[5]/div/div[1]/span")).getText();
-//    }
 
-    public boolean isLoggedIn() {
+    private boolean isLoggedIn() {
         return !isElementPresent(By.linkText("Войти"));
     }
 
@@ -59,7 +58,7 @@ public class LoginHelper extends HelperBase {
         return isLoggedin && accountData.getLogin().equals(getLoggedUserName());
     }
 
-    public String getLoggedUserName() {
+    private String getLoggedUserName() {
         getAppManager().getDriver().get(accountUrl);
         String email;
         if (isElementPresent(By.xpath("//*[@id=\"content\"]/div/div[3]/div[2]/div[2]/div[2]/div/div/p[1]"))) {

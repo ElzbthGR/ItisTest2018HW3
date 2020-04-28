@@ -12,6 +12,10 @@ import static org.junit.Assert.fail;
 
 public class AppManager {
 
+    private static final String WEB_DRIVER = "webdriver.chrome.driver";
+    private static final String WEB_DRIVER_PATH = "C:/Users/Asus/IdeaProjects/ItisTest2018HW3/chromedriver.exe";
+    private static final String BASE_URL = "https://www.katalon.com/";
+
     private WebDriver driver;
     private String baseUrl;
     private StringBuffer verificationErrors = new StringBuffer();
@@ -20,12 +24,10 @@ public class AppManager {
     private LoginHelper loginHelper;
     private NavigateHelper navigateHelper;
 
-//    private static ThreadLocal<AppManager> app = new ThreadLocal<AppManager>();
-
     public AppManager() {
-        System.setProperty("webdriver.chrome.driver", "C:/Users/Asus/IdeaProjects/ItisTest2018HW3/chromedriver.exe");
+        System.setProperty(WEB_DRIVER, WEB_DRIVER_PATH);
         driver = new ChromeDriver();
-        baseUrl = "https://www.katalon.com/";
+        baseUrl = BASE_URL;
         driver.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
         driver.manage().timeouts().pageLoadTimeout(120, TimeUnit.SECONDS);
         driver.manage().timeouts().setScriptTimeout(30, TimeUnit.SECONDS);
